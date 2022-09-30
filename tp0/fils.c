@@ -1,0 +1,59 @@
+/*
+//fils.c
+#include<stdio.h>
+#include<unistd.h>// fork
+#include<stdlib.h>// exit
+void main()
+{
+int pid = fork();
+if(pid == -1)
+{
+    perror("fork");
+    exit(1);
+
+}
+
+if(pid==0)
+{
+    printf("Debut du fils\n");
+    printf("le fils pid= %d , le pere pid= %d \n",getpid(),getppid());
+    sleep(6);
+    exit(0);
+}
+sleep(4);
+printf("pere de pid= %d , est ppid= %d , le pid de son fils crée : %d \n",getpid(),getppid(),pid);
+
+}
+*/
+
+//fils.c
+
+
+#include<stdio.h>
+#include<unistd.h>// fork
+#include<stdlib.h>// exit
+void main()
+{
+int n ; 
+printf("donner un chiffre n : ");
+scanf("%d",&n);
+for(int i=0;i<n;i++){
+    int pid = fork();
+    if(pid == -1)
+    {
+        perror("fork");
+        exit(1);
+    }
+    if(pid==0)
+    {
+        printf("fils de pid %d , le pid de mon pere est %d \n",getpid(),getppid());
+        //sleep(6);
+       // printf("fils de pid %d  au revoir * , le pid de mon pere est %d \n",getpid(),getppid());
+       // exit(0); on l'enleve pour voir comment ca fonction 
+       // ps -aef --forest -p <pid pere>
+       sleep(6);
+    }
+}
+    sleep(7);
+    printf("fin .. pere de pid= %d , est ppid= %d   \n",getpid(),getppid());
+}
